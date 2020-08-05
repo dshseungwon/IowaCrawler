@@ -69,25 +69,33 @@ class ViewController: NSViewController, URLSessionDelegate {
             if let modifiedURL = link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
                 guard let url = URL(string: modifiedURL) else { fatalError("Error occured while casting URL") }
                 
-                let operation = DownloadOperation(session: URLSession.shared, downloadTaskURL: url, completionHandler: { (location, response, error) in
-                    do {
-                        let downloadsURL = try
-                            FileManager.default.url(for: .downloadsDirectory,
-                                                    in: .userDomainMask,
-                                                    appropriateFor: nil,
-                                                    create: false)
+                do {
+                    let downloadsURL = try
+                        FileManager.default.url(for: .downloadsDirectory,
+                                                in: .userDomainMask,
+                                                appropriateFor: nil,
+                                                create: false)
+                    
+                    let savedURL = downloadsURL.appendingPathComponent(url.lastPathComponent)
+                    
+                    if FileManager.default.fileExists(atPath: savedURL.path) {
+                        print("\(url.lastPathComponent) already exists.")
                         
-                        let savedURL = downloadsURL.appendingPathComponent(url.lastPathComponent)
-
-                        try FileManager.default.moveItem(at: location!, to: savedURL)
-                        
-                        print("DONE")
-                    } catch {
-                        // handle filesystem error
-                        print("Filesystem Error: \(error)")
+                    } else {
+                        let operation = DownloadOperation(session: URLSession.shared, downloadTaskURL: url) { (location, response, error) in
+                            do {
+                                try FileManager.default.moveItem(at: location!, to: savedURL)
+                                
+                                print("DONE")
+                            } catch {
+                                print("\(error)")
+                            }
+                        }
+                        queue.addOperation(operation)
                     }
-                })
-                queue.addOperation(operation)
+                } catch {
+                    print("\(error)")
+                }
             }
         }
     }
