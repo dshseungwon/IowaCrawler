@@ -81,7 +81,7 @@ class ViewController: NSViewController, URLSessionDelegate {
 
                         try FileManager.default.moveItem(at: location!, to: savedURL)
                         
-                        print("FINISHED: \(url.lastPathComponent)")
+                        print("DONE")
                     } catch {
                         // handle filesystem error
                         print("Filesystem Error: \(error)")

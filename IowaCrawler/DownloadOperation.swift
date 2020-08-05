@@ -73,7 +73,7 @@ class DownloadOperation : Operation {
         // set the state to executing
         state = .executing
         
-        print("DOWNLOAD: \(self.task.originalRequest?.url?.lastPathComponent ?? "")")
+        print("DOWNLOAD: \(self.task.originalRequest?.url?.lastPathComponent ?? "")  ", terminator: "")
         
         // start the downloading
         self.task.resume()
