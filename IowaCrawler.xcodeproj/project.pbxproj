@@ -3,17 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18323D4B781564E1D6DB7A91 /* Pods_IowaCrawler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1628789441A15966828726C /* Pods_IowaCrawler.framework */; };
 		E3BB256E24DA79420008DB34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB256D24DA79420008DB34 /* AppDelegate.swift */; };
 		E3BB257024DA79420008DB34 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB256F24DA79420008DB34 /* ViewController.swift */; };
 		E3BB257224DA79430008DB34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3BB257124DA79430008DB34 /* Assets.xcassets */; };
 		E3BB257524DA79430008DB34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3BB257324DA79430008DB34 /* Main.storyboard */; };
+		E3BB257E24DAACF20008DB34 /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB257D24DAACF20008DB34 /* DownloadOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		424DBC7CBF776F3A007FB5EE /* Pods-IowaCrawler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IowaCrawler.release.xcconfig"; path = "Target Support Files/Pods-IowaCrawler/Pods-IowaCrawler.release.xcconfig"; sourceTree = "<group>"; };
+		B1628789441A15966828726C /* Pods_IowaCrawler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IowaCrawler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B503A5A910D42918855BFDBB /* Pods-IowaCrawler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IowaCrawler.debug.xcconfig"; path = "Target Support Files/Pods-IowaCrawler/Pods-IowaCrawler.debug.xcconfig"; sourceTree = "<group>"; };
 		E3BB256A24DA79420008DB34 /* IowaCrawler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IowaCrawler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3BB256D24DA79420008DB34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3BB256F24DA79420008DB34 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -21,6 +26,7 @@
 		E3BB257424DA79430008DB34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3BB257624DA79430008DB34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3BB257724DA79430008DB34 /* IowaCrawler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IowaCrawler.entitlements; sourceTree = "<group>"; };
+		E3BB257D24DAACF20008DB34 /* DownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,17 +34,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18323D4B781564E1D6DB7A91 /* Pods_IowaCrawler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DDB24D86A5C0171241AC6385 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B503A5A910D42918855BFDBB /* Pods-IowaCrawler.debug.xcconfig */,
+				424DBC7CBF776F3A007FB5EE /* Pods-IowaCrawler.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E3BB256124DA79420008DB34 = {
 			isa = PBXGroup;
 			children = (
 				E3BB256C24DA79420008DB34 /* IowaCrawler */,
 				E3BB256B24DA79420008DB34 /* Products */,
+				DDB24D86A5C0171241AC6385 /* Pods */,
+				F5F609D49969528FAA9CBBF7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,12 +73,21 @@
 			children = (
 				E3BB256D24DA79420008DB34 /* AppDelegate.swift */,
 				E3BB256F24DA79420008DB34 /* ViewController.swift */,
+				E3BB257D24DAACF20008DB34 /* DownloadOperation.swift */,
 				E3BB257124DA79430008DB34 /* Assets.xcassets */,
 				E3BB257324DA79430008DB34 /* Main.storyboard */,
 				E3BB257624DA79430008DB34 /* Info.plist */,
 				E3BB257724DA79430008DB34 /* IowaCrawler.entitlements */,
 			);
 			path = IowaCrawler;
+			sourceTree = "<group>";
+		};
+		F5F609D49969528FAA9CBBF7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1628789441A15966828726C /* Pods_IowaCrawler.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -70,9 +97,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3BB257A24DA79430008DB34 /* Build configuration list for PBXNativeTarget "IowaCrawler" */;
 			buildPhases = (
+				19B410BCD42996B4BCEAB5B2 /* [CP] Check Pods Manifest.lock */,
 				E3BB256624DA79420008DB34 /* Sources */,
 				E3BB256724DA79420008DB34 /* Frameworks */,
 				E3BB256824DA79420008DB34 /* Resources */,
+				76C5B5E62DF030D84DBB0863 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,6 +157,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		19B410BCD42996B4BCEAB5B2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IowaCrawler-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76C5B5E62DF030D84DBB0863 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IowaCrawler/Pods-IowaCrawler-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IowaCrawler/Pods-IowaCrawler-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IowaCrawler/Pods-IowaCrawler-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E3BB256624DA79420008DB34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -135,6 +206,7 @@
 			files = (
 				E3BB257024DA79420008DB34 /* ViewController.swift in Sources */,
 				E3BB256E24DA79420008DB34 /* AppDelegate.swift in Sources */,
+				E3BB257E24DAACF20008DB34 /* DownloadOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +339,7 @@
 		};
 		E3BB257B24DA79430008DB34 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B503A5A910D42918855BFDBB /* Pods-IowaCrawler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = IowaCrawler/IowaCrawler.entitlements;
@@ -287,6 +360,7 @@
 		};
 		E3BB257C24DA79430008DB34 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 424DBC7CBF776F3A007FB5EE /* Pods-IowaCrawler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = IowaCrawler/IowaCrawler.entitlements;
