@@ -82,11 +82,9 @@ class ViewController: NSViewController, URLSessionDelegate {
                         print("\(url.lastPathComponent) already exists.")
                         
                     } else {
-                        let operation = DownloadOperation(session: URLSession.shared, downloadTaskURL: url) { (location, response, error) in
+                        let operation = DownloadOperation(downloadTaskURL: url) { (location) in
                             do {
                                 try FileManager.default.moveItem(at: location!, to: savedURL)
-                                
-                                print("DONE")
                             } catch {
                                 print("\(error)")
                             }

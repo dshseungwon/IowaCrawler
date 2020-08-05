@@ -8,9 +8,16 @@
 
 import Foundation
 
-class DownloadOperation : Operation {
+class DownloadOperation : Operation, URLSessionTaskDelegate, URLSessionDownloadDelegate {
     
     private var task : URLSessionDownloadTask!
+    private var userCompletionHandler : ((URL?) -> Void)?
+    private lazy var session = URLSession(configuration: .default,
+                                          delegate: self,
+                                          delegateQueue: nil)
+    
+    private let totalBlock = 10
+    private var printedBlock = 0
     
     enum OperationState : Int {
         case ready
@@ -35,28 +42,12 @@ class DownloadOperation : Operation {
     override var isExecuting: Bool { return state == .executing }
     override var isFinished: Bool { return state == .finished }
     
-    init(session: URLSession, downloadTaskURL: URL, completionHandler: ((URL?, URLResponse?, Error?) -> Void)?) {
+    init(downloadTaskURL: URL, completionHandler: ((URL?) -> Void)?) {
         super.init()
         
-        // use weak self to prevent retain cycle
-        task = session.downloadTask(with: downloadTaskURL, completionHandler: { [weak self] (localURL, response, error) in
-            
-            /*
-             if there is a custom completionHandler defined,
-             pass the result gotten in downloadTask's completionHandler to the
-             custom completionHandler
-             */
-            if let completionHandler = completionHandler {
-                // localURL is the temporary URL the downloaded file is located
-                completionHandler(localURL, response, error)
-            }
-            
-            /*
-             set the operation state to finished once
-             the download task is completed or have error
-             */
-            self?.state = .finished
-        })
+        task = session.downloadTask(with: downloadTaskURL)
+        
+        userCompletionHandler = completionHandler
     }
     
     override func start() {
@@ -84,6 +75,31 @@ class DownloadOperation : Operation {
         
         // cancel the downloading
         self.task.cancel()
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        if let completionHandler = userCompletionHandler {
+            completionHandler(location)
+        }
+        self.state = .finished
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        
+        let calculatedProgress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite) * Float(10)
+        let FlooredProgress = Int(floorf(calculatedProgress))
+        
+        let blockToPrint = FlooredProgress - printedBlock
+        for _ in 0 ..< blockToPrint {
+            print("_", terminator: "")
+        }
+        
+        printedBlock = FlooredProgress
+        
+        if printedBlock == totalBlock {
+            printedBlock = 0
+            print(" DONE")
+        }
     }
     
     
